@@ -17,7 +17,9 @@ Vault 3 &#169; Copyright 2021, [`Eric Bergman-Terrell`](https://www.ericbt.com)
 
 # Building for Windows 10
 
-Run the ant build script (build.xml). It writes a SlideShow.jar file to C:/Temp.
+1. [`Download`](https://archive.eclipse.org/eclipse/downloads/drops4/R-4.18-202012021800/) the appropriate version of the swt.jar file.
+1. Update the ant build script to point to the swt.jar file that you downloaded.
+1. Run the ant build script (build.xml). It writes a SlideShow.jar file to C:/Temp.
 
 # How to Run
 
