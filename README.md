@@ -1,6 +1,6 @@
 # SlideShow
 
-SlideShow turns a laptop computer into a high-capacity photo frame. Runs on Windows 10. SlideShow can run for months with no issues.
+SlideShow turns a notebook computer into a high-capacity photo frame. Runs on Windows 10. SlideShow can run for months with no issues.
 
 # Screenshot
 
