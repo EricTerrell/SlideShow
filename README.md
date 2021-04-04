@@ -8,7 +8,7 @@ SlideShow turns a laptop computer into a high-capacity photo frame. Runs on Wind
 
 # Copyright
 
-Vault 3 &#169; Copyright 2021, [`Eric Bergman-Terrell`](https://www.ericbt.com)
+SlideShow &#169; Copyright 2021, [`Eric Bergman-Terrell`](https://www.ericbt.com)
 
 # Links
 
