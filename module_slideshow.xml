@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_slideshow" default="compile.module.slideshow">
+  <dirname property="module.slideshow.basedir" file="${ant.file.module_slideshow}"/>
+  
+  <property name="module.jdk.home.slideshow" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.slideshow" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.slideshow" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.slideshow" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="slideshow.output.dir" value="${module.slideshow.basedir}/out/production/SlideShow"/>
+  <property name="slideshow.testoutput.dir" value="${module.slideshow.basedir}/out/test/SlideShow"/>
+  
+  <path id="slideshow.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="slideshow.module.production.classpath">
+    <path refid="${module.jdk.classpath.slideshow}"/>
+    <pathelement location="${basedir}/../../Eclipse 4.4.2/swt-4.4.2-win32-win32-x86_64/swt.jar"/>
+  </path>
+  
+  <path id="slideshow.runtime.production.module.classpath">
+    <pathelement location="${slideshow.output.dir}"/>
+    <pathelement location="${basedir}/../../Eclipse 4.4.2/swt-4.4.2-win32-win32-x86_64/swt.jar"/>
+  </path>
+  
+  <path id="slideshow.module.classpath">
+    <path refid="${module.jdk.classpath.slideshow}"/>
+    <pathelement location="${slideshow.output.dir}"/>
+    <pathelement location="${basedir}/../../Eclipse 4.4.2/swt-4.4.2-win32-win32-x86_64/swt.jar"/>
+  </path>
+  
+  <path id="slideshow.runtime.module.classpath">
+    <pathelement location="${slideshow.testoutput.dir}"/>
+    <pathelement location="${slideshow.output.dir}"/>
+    <pathelement location="${basedir}/../../Eclipse 4.4.2/swt-4.4.2-win32-win32-x86_64/swt.jar"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.slideshow">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.slideshow">
+    <patternset refid="excluded.from.module.slideshow"/>
+  </patternset>
+  
+  <path id="slideshow.module.sourcepath">
+    <dirset dir="${module.slideshow.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.slideshow" depends="compile.module.slideshow.production,compile.module.slideshow.tests" description="Compile module SlideShow"/>
+  
+  <target name="compile.module.slideshow.production" depends="register.custom.compilers" description="Compile module SlideShow; production classes">
+    <mkdir dir="${slideshow.output.dir}"/>
+    <javac2 destdir="${slideshow.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.slideshow}/javac">
+      <compilerarg line="${compiler.args.slideshow}"/>
+      <bootclasspath refid="slideshow.module.bootclasspath"/>
+      <classpath refid="slideshow.module.production.classpath"/>
+      <src refid="slideshow.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.slideshow"/>
+    </javac2>
+    
+    <copy todir="${slideshow.output.dir}">
+      <fileset dir="${module.slideshow.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.slideshow.tests" depends="register.custom.compilers,compile.module.slideshow.production" description="compile module SlideShow; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.slideshow" description="cleanup module">
+    <delete dir="${slideshow.output.dir}"/>
+    <delete dir="${slideshow.testoutput.dir}"/>
+  </target>
+</project>
